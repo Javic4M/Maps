@@ -394,15 +394,6 @@ public class MapaFrame extends javax.swing.JFrame {
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         if (getNombreLugarEscogido().equals(getNombreDestino())) {
             JOptionPane.showMessageDialog(this,"Ha llegado a su Destino","Final",JOptionPane.INFORMATION_MESSAGE);
-            actualizarHora();
-            activarODesactivarControles(true, false);
-            caminarSeleccionado = false; vehiculoSeleccionado = false; relojBloqueado = false;
-            botonRestaurarHora.setEnabled(true); botonEditarHora.setEnabled(true); botonBloquearHora.setEnabled(true);
-            Acciones accion = new Acciones();
-            accion.desmarcarCaminos(lugares);
-            comboSiguiente.removeAllItems();
-            opciones.setText("");
-            
             if (caminarSeleccionado) {
                 for (Lugar lugarDoble : lugaresDobles) {
                     lugarDoble.setPasado(false);
@@ -412,7 +403,14 @@ public class MapaFrame extends javax.swing.JFrame {
                     lugar.setPasado(false);
                 }
             }
-            
+            actualizarHora();
+            activarODesactivarControles(true, false);
+            caminarSeleccionado = false; vehiculoSeleccionado = false; relojBloqueado = false;
+            botonRestaurarHora.setEnabled(true); botonEditarHora.setEnabled(true); botonBloquearHora.setEnabled(true);
+            Acciones accion = new Acciones();
+            accion.desmarcarCaminos(lugares);
+            comboSiguiente.removeAllItems();
+            opciones.setText("");
             colocarImagen(1);
         } else {
             if (caminarSeleccionado) {
@@ -662,7 +660,7 @@ public class MapaFrame extends javax.swing.JFrame {
 
             while (true) {
                 if (file.exists()) {
-                    Thread.sleep(2000);  
+                    Thread.sleep(3000);  
                     labelMapa.setIcon(new ImageIcon(new ImageIcon("ImagenMapa.png").getImage().getScaledInstance(-1, -1, java.awt.Image.SCALE_SMOOTH)));
                     break;
                 }
